@@ -1,7 +1,6 @@
 <?php
 include ("DB/mysqli_object.php"); 
 
-
 class User {
 
     private $table = "user"; 
@@ -38,10 +37,34 @@ class User {
         
         return $result;
 
-    } 
+    }
+    
+    function update_user($user_id, $datas) { 
+        $database = new MYSQL(); 
+
+        foreach($datas as $key => $data) { 
+            $fields[] = "$key = '$data'";
+        }
+         $update = implode(", " , $fields); 
+
+         $sql = "UPDATE $this->table SET $update WHERE id=$user_id";
+         $result = $database->ModifyRecord($sql);
+
+         return $result;
+
+    }
+
+    function delete_user($user_id) 
+    { 
+        $database = new MYSQL(); 
+
+         $sql = "DELETE FROM $this->table WHERE id=$user_id";
+         $result = $database->ModifyRecord($sql);
+
+         return $result;
+
+    }
 
 }
-
-
 
 ?>

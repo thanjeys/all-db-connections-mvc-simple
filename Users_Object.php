@@ -1,6 +1,6 @@
 <?php
 
-include('Model/user.php');
+include('Model/user_object.php');
 
 
 $userModel = new User();
@@ -40,7 +40,26 @@ $saveuser = $userModel->save_user($data);
 
 var_dump($saveuser);
 
+// Save a New Record 
+echo "<h1> Update Record </h1>";
 
+$datas['name'] = "thana array2";
+$datas['email'] = "tharray@gmail.com";
 
+$updated = $userModel->update_user(2, $datas);
+
+if($updated) {
+    echo "Updated";
+
+    var_dump($updated);
+}
+
+// Save a New Record 
+echo "<h1> Delete Record </h1>";
+$deleted = $userModel->delete_user(3); 
+
+if($deleted) { 
+    var_dump($deleted);
+}
 
 ?>
